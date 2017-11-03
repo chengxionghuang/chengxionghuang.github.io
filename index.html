@@ -1,0 +1,423 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>首页</title>
+<style>
+  body{
+	font-size:14px;
+	font-family:"Times New Roman",Times,serif;
+	margin:0;
+	padding:0;
+}
+  a{
+	  color:#333;
+	  text-decoration:none;
+  }
+  h4{color:#666666;}
+  
+  /*头部相关*/
+  nav,header,footer,#mainContent{
+	  clear:both;	  
+	  margin:0 auto;
+	  width:1000px;
+  }
+  header div img{float:left;}
+  #hdes{
+	  float:left;
+	  font-family:Helvetica, Arial, sans-serif;
+	  font-size:30px;
+	  color:black;
+	  font-weight:bold;
+	  /*设置阴影效果*/
+	  text-shadow:0.1em 0.1em 0.2em black;
+  }
+  #search{margin-right:0;}
+  #hlogin{
+	  margin-top:50px;
+	  float:right;
+  }
+  
+  /*导航相关*/
+  nav{clear:both;}
+  nav ul{
+	  list-style:none;
+	  background-color:#666666;
+	  height:30px;
+	  padding-left:0;
+	  color:#ffffff;
+  }
+  nav ul li{
+	  width:80px;
+	  float:left;
+	  line-height:30px;
+	  text-align:center;
+  }
+  
+  /*移动效果*/
+  nav ul li:hover{
+	  background:#333333;
+	  cursor:pointer;
+	  -webkit-transform:translate(6px,6px);
+	  -webkit-transition-duration:0.5s;
+  }
+  nav ul li a{
+	  color:#fff;
+	  text-decoration:none;
+  }
+  
+  /*左侧样式*/
+  #left{
+	  width:700px;
+	  float:left;
+  }
+  /*图片翻转效果*/
+  #left section:nth-child(1){
+	  -webkit-animation-name:x-spin;
+	  -webkit-animation-duration:10s;
+	  -webkit-animation-iteration-count:infinite;
+	  -webkit-animation--timing-function:linear;
+  }
+  @-webkit-keyframes x-spin{
+	  0%{
+		  -webkit-transform:rotate(0deg);
+	  }
+	  50%{
+		   -webkit-transform:rotateX(180deg);
+	  }
+	  100%{
+		   -webkit-transform:rotateX(360deg);
+	  }
+  }
+  #left section:nth-child(1) img{
+	  width:680px;
+	  height:300px;
+  }
+  /*左下部*/
+  #bottom{
+  }
+  #bottom header{padding:10px;}
+  #bottom figure{
+	  width:640px;
+	  height:150px;
+  }
+  #bottom figure img{
+	  clear:both;
+	  width:200px;
+	  height:150px;
+	  float:left;
+	  margin-left:-20px;
+	  margin-right:10px;
+  }
+  #bottom figure figcaption{
+	  width:400px;
+	  height:150px;
+	  float:left;
+  }
+  
+  /*右侧式样*/
+  #right{
+	  width:300px;
+	  float:right;
+  }
+  #right aside{
+	  border-radius:15px;
+	  padding:15px;
+	  margin-top:15px;
+	  width:270px;
+	  height:300px;
+	  border:1px solid #999;
+  }
+  #right h1{
+	  font-size:16px;
+	  font-weight:bold;
+	  margin-bottom:8px;
+  }
+  #right p{
+	  text-align:center;
+	  line-height:20px;
+  }
+  #right form p{
+	  font-size:12px;
+	  margin-bottom:20px;
+	  width:270px;
+	  border:1px solid #b7ddf2;
+	  padding-bottom:10px;
+  }
+  #right aside:nth-child(1){height:250px;}
+  #ctTime{
+	  color:red;
+  }
+  /*登录相关*/
+  #login label{
+	  display:block;
+	  width:60px;
+	  text-align:right;
+	  float:left;
+	  margin-top:10px;
+	  height:30px;
+	  padding-top:10px;
+	  box-sizing:border-box;
+	  font-size:12px;
+  }
+  #login input{
+	  width:200px;
+	  float:left;
+	  font-size:12px;
+	  border:1px solid #aacfe4;
+	  margin-top:10px;
+	  height:30px;
+  }
+  #login input[type=button]{
+	  width:125px;
+	  height:31px;
+	  margin-left:60px;
+	  background:#666666;
+	  line-height:31px;
+	  color:#ffffff;
+	  font-size:12px;
+	  font-weight:bold;
+  }
+  #login input:active{outline:thin solid #aaa;}
+  #userInfo{
+	  display:none;
+	  height:20px;
+	  border:1px solid #ccc;
+	  border-radius:20px;
+	  line-height:20px;
+	  text-align:center;
+	  font-size:14px;
+	  background:#ccc;
+	  font-family:楷体;
+  }
+  /*热点新闻*/
+  #hotNews{
+	  width:300px;
+	  height:200px;
+  }
+  #hotNews ul li{
+	  height:35px;
+	  padding-bottom:10px;
+	  box-sizing:border-box;
+	  margin-left:-25px;
+	  font-size:13px;
+	  /*设置在一行内显示,超出一行自动添加省略号*/
+	  white-space:nowrap;
+	  overflow:hidden;
+	  text-overflow:ellipsis;
+  }
+  /*饼状图*/
+  #pie{
+	  border:1px solid #999;
+	  height:440px;
+  }
+  #pie canvas{margin-left:-17px;}
+
+  footer{text-align:center;}
+  footer p{
+	  clear:left;
+	  background:#999;
+	  height:30px;
+	  line-height:30px;
+  }
+</style>
+<script src="script/jquery-1.11.3.js"></script>
+<script src="script/articlePub.js"></script>
+<script src="script/canvasPie.js"></script>
+<script>
+	//检查浏览器是否支持sessionStorage对象
+	function IsBrowerSupport(){
+		if(window.sessionStorage){
+		}
+		else{
+			alert("您的浏览器不支持sessionStorage");
+		}
+	}
+	//登录操作
+	function Login(){
+		var userName = $("#userName").val();
+		var password = $("#password").val();
+		//用户登录
+		if("HCX" == userName && "123" == password){
+			window.sessionStorage.userName = "HCX";
+			$("#right aside:first").hide();
+			$("#userInfo").show();
+			$("#userInfo span").text("欢迎您回来："+userName);
+		}
+	}
+	//退出操作
+	function Exit(){
+		//清空sessionStorage对象
+		window.sessionStorage.clear();
+		window.location.href = "index.html";
+	}
+	$(function(){
+		//检测是否支持sessStora对象
+		IsBrowerSupport();
+		//获取登录用户名并显示
+		var userName = window.sessionStorage.userName;
+		if(userName){
+			$("#userInfo span").text("欢迎您回来："+userName);
+			$("#userInfo").show();
+			//隐藏首页登录模块
+			$("right aside:first").hide();
+		}
+	});
+	//刷新缓存
+	function refreshCache(){
+		cache = window.applicationCache;
+		cache.update();
+		if(cache.status == window.applicationCache.UPDATEREADY){
+			cache.swapCache();
+		}
+	}
+	var worker = new Worker("script/worker.js");
+	worker.postMessage(1);
+	worker.onmessage = function(e){
+		var dt = e.data;
+		var time = "当前时间："+
+		dt.getHours()+":"+dt.getMinutes()+":"+dt.getSeconds();
+		document.getElementById("ctTime").innerHTML = time;
+	}
+</script>
+</head>
+
+<body>
+  <header>
+    <div>
+      <img src="style/images/logo.png"/>
+      <p id="hdes">欢迎来到HCX的空间</p>
+      <p id="search">
+      <form>输入网址：<input type="url" name="search"/>
+      <input type="submit" value="search">
+      </form>
+      </p>
+      <p id="hlogin">
+      <a href="index.html" target="_parent">登录</a>
+      <a href="register.html" target="_parent">注册</a>
+      <a href="javascript:void(0)" onClick="refreshCache()">更新</a>
+      </p>
+    </div>
+  </header>
+  <nav>
+    <ul>
+    <li><a href="index.html" tarfet="_parent">首页</a></li>
+    <li><a href="video.html" target="_parent">精彩视频</a></li>
+    <li><a href="articlePub.html" target="_parent">文章发布</a></li>
+    <li><a href="testLogin.html" target="_parent">登录测试</a></li>
+    </ul>
+  </nav>
+  <div id="mainContent">
+    <div id="left">
+      <section><img src="style/images/person.jpg"/></section>
+      <section id="bottom">
+        <header>精彩内容</header>
+        <figure>
+          <a href="graffiWall.html"><img src="style/images/pic1.jpg"/></a>
+          <figcaption>
+            <h3><a href="graffiWall.html">漂亮的涂鸦墙</a></h3>
+            <p>具体内容简介1：大大方方冯伟峰方法为effect我仿佛分 威锋网 额非法违法无法顾问费
+			耳热热无若人 沃尔沃
+			玩儿若</p>
+          </figcaption>        
+        </figure>
+        <figure>
+          <a href="reflection.html"><img src="style/images/reflection.jpg"/></a>
+          <figcaption>
+            <h3><a href="reflection.html">美丽的倒影</a></h3>
+            <p>具体内容2：打发打发 发发斯蒂芬发送到放松放松分发生的发生 分分舒服舒服s发顺丰是否
+			分沙发斯蒂芬是否该发电公司分公司是的是的吧爱迪生</p>
+          </figcaption>
+        </figure> 
+        <figure>
+          <a href="video.html"><img src="style/images/wflife.jpg"/></a>
+          <figcaption>
+            <h3><a href="video.html">精彩视频播放</a></h3>
+            <p>HTML5 video和audio两个元素让HTML5的媒体应用多了选择，
+            开发人员不必使用插件就可以播放音频和视频</p>
+          </figcaption>
+        </figure>
+        <figure>
+          <a href="scanBig.html"><img src="style/images/cover.jpg"/></a>
+          <figcaption>
+            <h3><a href="scanBig.html">浏览大图</a></h3>
+            <p>移动浏览大图</p>
+          </figcaption>
+        </figure>
+        <figure>
+          <a href="drag.html"><img src="style/images/game.jpg"></a>
+          <figcaption>
+            <h3><a href="drag.html">动态拖拽</a></h3>
+            <p>不用JavaScript代码，仅用html5的拖放功能实现动态拖拽功能</p>
+          </figcaption>
+        </figure>
+        <figure>
+          <a href="webworker.html"><img src="style/images/listen.jpg"/></a>
+          <figcaption>
+            <h3><a href="webworker.html">聆听</a></h3>
+            <p>聆听美好文字，倾听声音</p>
+          </figcaption>
+        </figure>
+        <!--
+        <figure>
+        <a href="#"><img src="style/images/audio.jpg"/></a>
+          <figcaption>
+            <h3><a href="drag.html">音乐播放器制作教程</a></h3>
+            <p>教你使用html5制作音乐播放器</p>
+          </figcaption>
+        </figure>
+        -->
+        <!--
+        <figure>
+          <img src="style/images/clock.jpg"/>
+          <figcaption>
+          <h3><a href="reflection.html">绘制时钟</a></h3>
+          <p>教你如何绘制时钟</p>
+          </figcaption>
+        </figure>
+        -->
+      </section>
+    </div>
+    <div id="right">
+      <form>
+      <aside>
+        <header>
+          <p id="ctTime"></p>
+          <h1>登录</h1>
+          <p>请准确填写个人信息</p>
+        </header>
+        <div id="login">
+          <label>用户名：</label>
+          <input name="userName" id="userName" type="text"/>
+          <label>密码：</label>
+          <input name="password" id="password" type="password"/>
+          <input type="button" value="登录" onClick="Login()"/>
+        </div>
+      </aside>
+      </form>
+      <aside id="userInfo">
+        <span></span>
+        <a href="javascript:void(0)" onClick="Exit()">退出</a>
+      </aside>
+      <aside id="hotNews">
+        <header><h3>热点文章</h3></header>
+        <ul>
+          <li><a href="#">按时发生反对法国风格</a></li>
+          <li><a href="#">发的规划法规很反感</a></li>
+          <li><a href="#">第三方的第三方</a></li>
+          <li><a href="#">范德萨发的分管工会法国动画风格和国队</a></li>
+          <li><a href="#">的国家发给发动机就看见回复过几天热我投了，就飞得更高纷纷规划个梵蒂冈发的发鬼地方个</a></li>
+          <li><a href="#">法定法规的施工规范的恢</a></li>
+        </ul>
+      </aside>
+      <aside id="pie">
+        <header><h3>2017在线学习终端选择</h3></header>
+        <canvas id="canvas_circle" width="300" height="400"></canvas>
+      </aside>
+    </div>
+  </div>
+  <footer>
+    <p>&copy2017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HCX&nbsp;&nbsp;版权所有</p>
+  </footer>
+</body>
+</html>
